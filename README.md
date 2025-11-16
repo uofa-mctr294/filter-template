@@ -104,13 +104,17 @@ code helloWorld
 
 ## Building
 
+```shell
 cmake -S . -B build
 cmake --build build --config Debug
 build\Debug\hello_world.exe
+```
 
 ## Testing
 
 [Build](#building)
 
+```shell
 ctest --test-dir build -C Debug
 Add -V for verbose testing
+```
