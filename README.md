@@ -1,67 +1,34 @@
-# hello-world
+# image-filtering
+
+## Introduction
+
+Signal Processing a common problem domain in many fields of engineering, but is especially pervasive in Electrical & Computer Engineering, Mechatronics included. Many phemomena can be expressed a signal, including videos, music, radio, and sensors. Even seemingly unrelated disciplines can make use of signal processing.
+
+A staple subdomain of signal processing is that of 2D positional signals, or as they are more colloquialaly known, images. The theory and details of image processing are long and complicated, but knowledge of image processing enables applications include image visualization, compression, photo editing, computer vision, generative ai and more. On top of these uses, knowledge in image processing involves skills readily transferrable to other domains.
+
+One of the most fundamental methods of image processing is filtering. Filtering is used to extract maniuplate images as well as extract features. For these reasons it is often the first step in an image processing pipeline. Using computer vision as an example, filters are used for feature extraction, and these features are then passed to learning or recogniztion networks which evaluate properties of the image.
+
+Convolution kernels are commonly used to perform image filtering. They have the benefit of being linear operators, as well as easily expressed as a small 2D matrix. Filters can be used for blurring, sharpening, edge detection, and more.
 
 ## Requirements
 
-- Git
-- C++ Compiler (gcc, clang, msvc)
-- CMake
+- You are given an image for processing in a "Portable Gray Map (PGM)" Format.
+  - Load the image
+  - Apply a horizontal edge filter detection to create an image `Gx`
+  - Apply a vertical edge filter detection to create an image `Gy`
+  - Combine the two images to create a normalized gradient image `G`
 
-## Installation
+## Bonus
 
-Setting up a C++ development environment can be non-trivial. The course is setup that most relatively stanadard development environments will work fine, whether you are using Window or Linux. Nor do we perscribe that you use a specific editor or that you an editor at all! However for simplicity here we give instructions on how to use VS Code as your editor and setup a C++ development in Linux or Windows. Microsoft provides a thorough [set of instructions](https://code.visualstudio.com/docs/languages/cpp), but here we will go through some basics and the most pertinent set of instructions.
+- Some 2D filters are [seperable](https://en.wikipedia.org/wiki/Separable_filter), meaning that they can be expressed as 2 seperate 1D filters.
+  - Perform the above filtering use both a 2D filter and two consecutive 1D filters, and measure the performance difference
 
-### Terminal Basics
+### Hints
 
-Many of the folllowing instructions will require use of a terminal. While it is possible to perform these operations purely within a Graphical User Interface (GUI) you will find that you will often run into programs and tools that have no UI, and must be run via a command line interface (CLI), or even if there is a UI it would be faster to type the necessary commands. The following instructions will be for Windows, as the specific instructions can vary greatly depending on your Linux Distro.
-
-If you are unused to using the terminal here is a brief [introduction](https://www.freecodecamp.org/news/command-line-for-beginners/).
-
-### Setup
-
-On Windows for this first part you can use either Command Prompt or Powershell as your terminal, which can both be accessed via `Windows Terminal`. Both are acceptable but I would suggest using Powershell.
-
-If you are on Window we will use the utiltiy `winget` to install the required programs. On Linux you can use your system's package manager.
-
-```shell
-winget --version
-```
-
-First we will install [Git](https://git-scm.com/), a version control.
-
-```shell
-winget install Git.Git
-```
-
-Next we will install a c++ development environment. On Windows developers have the option to eitehr use [MSYS2](https://www.msys2.org/) which creates and Unix-like development environment, [Windows-Subsystem-for-Linux (WSL)](https://learn.microsoft.com/en-us/windows/wsl/install) which creates an actual Linux system that runs on-top of Windows, or [Microsoft's C++ Build Tools](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2022). If you wish to develop as if you are on Linux, WSL is an option, but we will continue with the Build Tools. While all 3 can be used with VS Code, the build tools can also be used with Microsoft's [Visual Studio](https://visualstudio.microsoft.com/downloads), which provides a fully integrated development environment. While we are at it we will also install [VSCode](https://visualstudio.microsoft.com/downloads)
-
-```shell
-winget install Microsoft.VisualStudio.2022.BuildTools
-winget install Microsoft.VisualStudioCode
-```
-
-With the installation of the build tools you now have two new terminals installed. These are the `Developer Powershell for VS 2022` & `Developer Command Prompt for VS 2022` The c++ development tools are only available while using one of these new terminals. Open one of the termainls and check that your tools are properly installed
-
-```shell
-cl
-```
-
-```shell
-g++
-```
-
-```shell
-code -v
-```
-
-With everything setup we will make a folder to place some new projects, you could do this in Windows Explorer, but let's continue using the terminal. We will also get the this repository
-
-```shell
-cd ~
-mkdir Repos/School/mctr294
-cd Repos/School/mctr294
-git clone https://github.com/mctr294-2026/lab-1-UserName helloWorld
-code helloWorld
-```
+- The PGM Format's specification is provided [here](https://netpbm.sourceforge.net/doc/pgm.html) but it's specification is so simple that it can reversed engineered by inspection.
+- A list of some examples of image kernels is provided [here](https://www.geeksforgeeks.org/deep-learning/types-of-convolution-kernels/).
+- An example of 2D convolution can be found [here](https://songho.ca/dsp/convolution/convolution2d_example.html).
+- For a partial differential equation, the normalized magnitude of the gradiant can be expressed as `G = sqrt(Gx^2 + Gy^2)`
 
 ## Building
 
