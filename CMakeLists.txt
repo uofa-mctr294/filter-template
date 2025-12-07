@@ -7,8 +7,12 @@ project(HelloWorld VERSION 1.0)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+# Collect all source files from src directory
+file(GLOB SOURCES "src/*.cpp")
+
 # Add the executable
-add_executable(hello_world src/main.cpp)
+add_executable(filter ${SOURCES})
+set_target_properties(filter PROPERTIES OUTPUT_NAME "filter")
 
 # --- GoogleTest (for integration tests that run the built binary) ---
 include(FetchContent)
@@ -22,8 +26,8 @@ FetchContent_MakeAvailable(googletest)
 enable_testing()
 
 # Test that runs the built binary. The test source will launch the binary by path.
-add_executable(test_binary tests/test_binary.cpp)
-target_link_libraries(test_binary PRIVATE GTest::gtest)
+add_executable(test_filter tests/test_filter.cpp)
+target_link_libraries(test_filter PRIVATE GTest::gtest)
 
 # Provide the path to the built executable to the test via a compile definition.
 if (WIN32)
@@ -33,4 +37,5 @@ else()
 	set(EXE_SUBDIR "")
 endif()
 
-add_test(NAME run_hello_binary COMMAND test_binary $<TARGET_FILE:hello_world>)
+add_test(NAME run_filter_binary COMMAND test_filter $<TARGET_FILE:filter>)
+set_tests_properties(run_filter_binary PROPERTIES WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})

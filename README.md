@@ -12,11 +12,22 @@ Convolution kernels are commonly used to perform image filtering. They have the 
 
 ## Requirements
 
-- You are given an image for processing in a "Portable Gray Map (PGM)" Format.
-  - Load the image
-  - Apply a horizontal edge filter detection to create an image `Gx`
-  - Apply a vertical edge filter detection to create an image `Gy`
-  - Combine the two images to create a normalized gradient image `G`
+- You are given a path to an image for processing in a "Portable Gray Map (PGM)" Format.
+- Read the contents of the image
+- Apply filtering to the image
+  - Apply a Sobel horizontal edge filter to create an image `Gx`
+  - Apply a Sobel vertical edge filter to create an image `Gy`
+  - Combine the two images to create a normalized gradiant image `G`
+- Write the created gradiant images to a new file
+
+## Testing Requirements
+
+- For the sake of testing we require that all your source files are placed in `src`.
+- We also require that nothing in `tests/test_filter.cpp` is removed. You may feel free to add to this file or add additional files to this directory, as long as testing continues to build and run. Any additional changes may require you to changes to `CMakeLists.txt`
+- It is expected that the following (and similar) commands will run correctly:
+  - `'cmd' image\boats.pmg image\boats-gradiant`
+where 'cmd' is the path to your produced binary (Retrieving this path will be handled by 'CMakeLists.txt'), the first argument is a relative path to an input image, and the second is a relative path to an output image base filename. For the given example the program will output 3 files `image\boats-gradiant-hedge.pgm`, `image\boats-gradiant-vedge.pgm`, `image\boats-gradiant-hedge.pgm`, & `image\boats-gradiant-magedge.pgm`.
+- Note: typically *relative* paths like the ones above are evaluated relative to the 'current working directory' (cwd) which is **not necessarily** the folder the exe is in; rather it is the directory it is run from.
 
 ## Bonus
 
@@ -35,7 +46,7 @@ Convolution kernels are commonly used to perform image filtering. They have the 
 ```shell
 cmake -S . -B build
 cmake --build build --config Debug
-build\Debug\hello_world.exe
+build\Debug\filter.exe
 ```
 
 ## Testing

@@ -42,5 +42,32 @@
             "environment": [],
             "externalConsole": false,
         },
+        {
+            "name": "Launch filter with boats image",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/Debug/filter.exe",
+            "args": [
+                "image/boats.pgm",
+                "image/boats-gradient"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+        },
+        {
+            "name": "Launch test_filter",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/Debug/test_filter.exe",
+            "args": [
+                "${workspaceFolder}/build/Debug/filter.exe"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+        },
     ]
 }
