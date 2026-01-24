@@ -51,8 +51,6 @@ build\Debug\filter.exe image/boats.pgm image/boats-gradient
 
 ## Testing
 
-[Build](#building)
-
 ```shell
 ctest --test-dir build -C Debug
 Add -V for verbose testing
